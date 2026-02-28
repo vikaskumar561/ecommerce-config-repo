@@ -1,0 +1,111 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+
+      routes:
+
+        # ================= PRODUCT =================
+        - id: product-service
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/products/**
+
+        - id: product-service-docs
+          uri: http://localhost:8080
+          predicates:
+            - Path=/product/v3/api-docs
+
+        # ================= ORDER =================
+        - id: order-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/orders/**
+
+        - id: order-service-docs
+          uri: http://localhost:8081
+          predicates:
+            - Path=/order/v3/api-docs
+
+        # ================= INVENTORY =================
+        - id: inventory-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/inventory/**
+
+        - id: inventory-service-docs
+          uri: http://localhost:8082
+          predicates:
+            - Path=/inventory/v3/api-docs
+
+        # ================= PAYMENT =================
+        - id: payment-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/payments/**
+
+        - id: payment-service-docs
+          uri: http://localhost:8083
+          predicates:
+            - Path=/payment/v3/api-docs
+
+        # ================= CART =================
+        - id: cart-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/cart/**
+
+        - id: cart-service-docs
+          uri: http://localhost:8084
+          predicates:
+            - Path=/cart/v3/api-docs
+
+      # ================= GLOBAL CORS =================
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns:
+              - "http://localhost:3000"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+# ================= ACTUATOR =================
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+# ================= SWAGGER AGGREGATION =================
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: Product Service
+        url: /product/v3/api-docs
+      - name: Order Service
+        url: /order/v3/api-docs
+      - name: Inventory Service
+        url: /inventory/v3/api-docs
+      - name: Payment Service
+        url: /payment/v3/api-docs
+      - name: Cart Service
+        url: /cart/v3/api-docs
+
+  api-docs:
+    path: /v3/api-docs
+
