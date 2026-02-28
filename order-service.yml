@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: order-service
+
+  datasource:
+    url: jdbc:h2:mem:orderdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+server:
+  port: 8081
+
+springdoc:
+  api-docs:
+    path: /order/v3/api-docs
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      inventoryService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+
+  retry:
+    instances:
+      inventoryService:
+        maxAttempts: 3
+        waitDuration: 1s
+
