@@ -30,9 +30,7 @@ spring:
 server:
   port: 8081
 
-springdoc:
-  api-docs:
-    path: /order/v3/api-docs
+
 
 resilience4j:
   circuitbreaker:
@@ -50,8 +48,7 @@ resilience4j:
         maxAttempts: 3
         waitDuration: 1s
 
-server:
-  port: 8085
+
 
 
 eureka:
