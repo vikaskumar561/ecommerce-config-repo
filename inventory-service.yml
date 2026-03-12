@@ -30,8 +30,7 @@ server:
 springdoc:
   api-docs:
     path: /inventory/v3/api-docs
-
-
+    
 eureka:
   client:
     register-with-eureka: true
