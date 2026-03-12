@@ -22,13 +22,6 @@ spring:
 server:
   port: 8080
 
-springdoc:
-  api-docs:
-    path: /product/v3/api-docs
-  swagger-ui:
-    path: /swagger-ui.html
-    disable-swagger-default-url: true
-    config-url: http://localhost:8085/product/v3/api-docs
 
 eureka:
   client:
