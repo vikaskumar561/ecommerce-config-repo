@@ -31,6 +31,12 @@ server:
   port: 8081
 
 
+springdoc:
+  api-docs:
+    path: /order/v3/api-docs
+  
+
+
 
 resilience4j:
   circuitbreaker:
