@@ -11,12 +11,12 @@ spring:
       routes:
 
         # ================= PRODUCT =================
-        - id: product-service
+        - id: products-service
           uri: http://localhost:8080
           predicates:
             - Path=/api/products/**
 
-        - id: product-service-docs
+        - id: products-service-docs
           uri: http://localhost:8080
           predicates:
             - Path=/product/v3/api-docs
