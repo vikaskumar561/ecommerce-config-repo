@@ -29,7 +29,10 @@ spring:
 
 server:
   port: 8083
-
+  
+springdoc:
+  api-docs:
+    path: /inventory/v3/api-docs
 
 eureka:
   client:
