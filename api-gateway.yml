@@ -20,6 +20,10 @@ spring:
           uri: http://localhost:8080
           predicates:
             - Path=/product/v3/api-docs
+          
+          filters:
+            - RewritePath=/product/v3/api-docs, /v3/api-docs
+
 
         # ================= ORDER =================
         - id: order-service
