@@ -31,9 +31,6 @@ server:
   port: 8084
 
 
-server:
-  port: 8085
-
 eureka:
   client:
     register-with-eureka: true
