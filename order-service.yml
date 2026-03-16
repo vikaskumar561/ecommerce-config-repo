@@ -39,20 +39,28 @@ springdoc:
 
 
 resilience4j:
-  circuitbreaker:
-    instances:
-      inventoryService:
-        registerHealthIndicator: true
-        slidingWindowSize: 10
-        minimumNumberOfCalls: 5
-        failureRateThreshold: 50
-        waitDurationInOpenState: 10s
-
   retry:
     instances:
-      inventoryService:
-        maxAttempts: 3
-        waitDuration: 1s
+      paymentRetry:
+        max-attempts: 3
+        wait-duration: 2s
+
+      inventoryRetry:
+        max-attempts: 3
+        wait-duration: 1s
+
+  circuitbreaker:
+    instances:
+      paymentCircuitBreaker:
+        sliding-window-size: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+
+      inventoryCircuitBreaker:
+        sliding-window-size: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+
 
 
 
